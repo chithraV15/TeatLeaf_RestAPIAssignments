@@ -1,0 +1,427 @@
+{
+	"info": {
+		"_postman_id": "7991c5d0-00dd-4e8f-a58e-0dfe0dc85ae5",
+		"name": "Jira_MiniProject",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "5235076"
+	},
+	"item": [
+		{
+			"name": "POSTBugCreation",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"fields\": {\r\n        \"project\": {\r\n            \"key\": \"MAR\"\r\n        },\r\n        \"summary\": \"This is task number three reported by CV\",\r\n        \"description\": \"Creation of third task\",\r\n        \"issuetype\": {\r\n            \"name\": \"Task\"\r\n        }\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://{{JiraResrc}}/rest/api/2/issue/",
+					"protocol": "https",
+					"host": [
+						"{{JiraResrc}}"
+					],
+					"path": [
+						"rest",
+						"api",
+						"2",
+						"issue",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GETRetrieveIssue_Via_ID",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://{{JiraResrc}}/rest/api/2/issue/10003",
+					"protocol": "https",
+					"host": [
+						"{{JiraResrc}}"
+					],
+					"path": [
+						"rest",
+						"api",
+						"2",
+						"issue",
+						"10003"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GETRetrieveIssue_Via_Key",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://{{JiraResrc}}/rest/api/2/issue/MAR-2",
+					"protocol": "https",
+					"host": [
+						"{{JiraResrc}}"
+					],
+					"path": [
+						"rest",
+						"api",
+						"2",
+						"issue",
+						"MAR-2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PUTEditBug_Via_ID",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 204\", function () {\r",
+							"    pm.response.to.have.status(204);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"fields\": {\r\n        \"description\": \"Fourth issue is now edited using ID\"\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://{{JiraResrc}}/rest/api/2/issue/10003",
+					"protocol": "https",
+					"host": [
+						"{{JiraResrc}}"
+					],
+					"path": [
+						"rest",
+						"api",
+						"2",
+						"issue",
+						"10003"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PUTEditBug_Via_Key",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 204\", function () {\r",
+							"    pm.response.to.have.status(204);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"fields\": {\r\n        \"description\": \"Third issue is now edited using Key in Postman\"\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://{{JiraResrc}}/rest/api/2/issue/MAR-3",
+					"protocol": "https",
+					"host": [
+						"{{JiraResrc}}"
+					],
+					"path": [
+						"rest",
+						"api",
+						"2",
+						"issue",
+						"MAR-3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET-ListAll_IssuesWithParam",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://{{JiraResrc}}/rest/api/2/search?jql=project= \"MAR\"",
+					"protocol": "https",
+					"host": [
+						"{{JiraResrc}}"
+					],
+					"path": [
+						"rest",
+						"api",
+						"2",
+						"search"
+					],
+					"query": [
+						{
+							"key": "jql",
+							"value": "project= \"MAR\""
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET-ListAll_IssuesWithTypeBug",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://{{JiraResrc}}/rest/api/2/issuetype",
+					"protocol": "https",
+					"host": [
+						"{{JiraResrc}}"
+					],
+					"path": [
+						"rest",
+						"api",
+						"2",
+						"issuetype"
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "\"Task\"",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET-ListAll_IssuesWithID",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://{{JiraResrc}}/rest/api/2/issuetype/10003",
+					"protocol": "https",
+					"host": [
+						"{{JiraResrc}}"
+					],
+					"path": [
+						"rest",
+						"api",
+						"2",
+						"issuetype",
+						"10003"
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "\"Task\"",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DELETEAnIssueWithID",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 204\", function () {\r",
+							"    pm.response.to.have.status(204);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "https://{{JiraResrc}}/rest/api/2/issue/10003",
+					"protocol": "https",
+					"host": [
+						"{{JiraResrc}}"
+					],
+					"path": [
+						"rest",
+						"api",
+						"2",
+						"issue",
+						"10003"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DELETEAnIssueWithKey",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 204\", function () {\r",
+							"    pm.response.to.have.status(204);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "https://{{JiraResrc}}/rest/api/2/issue/MAR-8",
+					"protocol": "https",
+					"host": [
+						"{{JiraResrc}}"
+					],
+					"path": [
+						"rest",
+						"api",
+						"2",
+						"issue",
+						"MAR-8"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "basic",
+		"basic": [
+			{
+				"key": "password",
+				"value": "{{JiraAPIToken}}",
+				"type": "string"
+			},
+			{
+				"key": "username",
+				"value": "{{JiraUname}}",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
