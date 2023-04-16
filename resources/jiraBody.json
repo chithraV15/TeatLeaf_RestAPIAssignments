@@ -1,0 +1,12 @@
+{
+    "fields": {
+        "project": {
+            "key": "RES"
+        },
+        "summary": "This is bug creation in RES jira project reported by CV",
+        "description": "Creation of bug",
+        "issuetype": {
+            "name": "Bug"
+        }
+    }
+}
